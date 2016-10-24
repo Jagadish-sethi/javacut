@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * @author jseth3
+ * Implement Thread pool or executor service
+ */
 public class MyThreadPoolExecutor {
 
 	BlockingQueue<Runnable> myqueue;
@@ -72,7 +76,9 @@ public class MyThreadPoolExecutor {
 		// TODO Auto-generated method stub
 		BlockingQueue<Runnable> myqueue = new ArrayBlockingQueue<Runnable>(5);
 		MyThreadPoolExecutor executor = new MyThreadPoolExecutor(3, myqueue);
-
+		
+		
+		System.out.println("Demo showing Threadpool of core size 3 and Queue size 5");
 		executor.execute(new MyRunnable(1));
 		System.out.println("Submitted Task no. "+1);
 		executor.execute(new MyRunnable(2));
@@ -97,6 +103,13 @@ public class MyThreadPoolExecutor {
 		executor.execute(new MyRunnable(11));
 		System.out.println("Submitted Task no. "+11);
 		
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
@@ -110,8 +123,8 @@ class MyRunnable implements Runnable{
 	}
 	public void run() {
 		
-		for (int i = 0; i < 20; i++) {
-			System.out.println(Thread.currentThread().getId()+"\t-----\t"+id+"\t-----\t"+i);
+		for (int i = 0; i < 5; i++) {
+			System.out.println("Thread id:"+Thread.currentThread().getId()+"\t----id\t"+id+"\t----step\t"+i);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

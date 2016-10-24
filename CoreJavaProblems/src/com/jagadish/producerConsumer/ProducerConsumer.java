@@ -29,6 +29,8 @@ public class ProducerConsumer {
 	}
 
 	private static void PCUsingWaitNotify() {
+		System.out.println("================================================");
+		System.out.println("Producer consumer using wait/notify\n\n");
 		Queue<Integer> queue = new LinkedList();
 		MyWNProducer myWNProducer = new MyWNProducer(queue, 5);
 		MyWNConsumer myWNConsumer = new MyWNConsumer(queue, 5);
@@ -43,6 +45,7 @@ public class ProducerConsumer {
 			Thread.sleep(200);
 			myWNProducer.stopProducing();
 			myWNConsumer.stopConsuming();
+			consumer.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +54,9 @@ public class ProducerConsumer {
 	}
 
 	private static void PCUsingBlockingQueue() {
+		
+		System.out.println("================================================");
+		System.out.println("Producer consumer using blocking queue\n\n");
 		BlockingQueue<Integer> queue = new ArrayBlockingQueue(5);
 		MyBQProducer myBQProducer = new MyBQProducer(queue);
 		MyBQConsumer myBQConsumer = new MyBQConsumer(queue);
@@ -93,7 +99,7 @@ class MyWNProducer implements Runnable{
 					queue.wait();
 				}
 				int value = (int)(Math.random()*100);
-				System.out.println(Thread.currentThread().getId()+" WNProduced \t"+value);
+				System.out.println("thread id : "+Thread.currentThread().getId()+" WNProduced \t"+value);
 				queue.add(value);
 				Thread.sleep(20);
 				queue.notifyAll();
@@ -131,7 +137,7 @@ class MyWNConsumer implements Runnable{
 						queue.wait();
 					}
 				int value = queue.poll();
-				System.out.println(Thread.currentThread().getId()+" WNConsumed \t\t\t"+value);
+				System.out.println("thread id : "+Thread.currentThread().getId()+" WNConsumed \t\t\t"+value);
 				Thread.sleep(40);
 				queue.notifyAll();
 				}
@@ -162,7 +168,7 @@ class MyBQProducer implements Runnable{
 		while(isProducing){
 			int value = (int)(Math.random()*100);
 			try {
-				System.out.println(Thread.currentThread().getId()+" BQProduced \t"+value);
+				System.out.println("thread id : "+Thread.currentThread().getId()+" BQProduced \t"+value);
 				queue.put(value);
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -192,7 +198,7 @@ class MyBQConsumer implements Runnable{
 		while(isConsuming || !queue.isEmpty()){
 			try {
 				int value = queue.take();
-				System.out.println(Thread.currentThread().getId()+" BQConsumed \t\t\t"+value);
+				System.out.println("thread id : "+Thread.currentThread().getId()+" BQConsumed \t\t\t"+value);
 				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

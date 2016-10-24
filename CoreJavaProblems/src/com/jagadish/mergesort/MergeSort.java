@@ -2,6 +2,8 @@ package com.jagadish.mergesort;
 
 import java.util.Arrays;
 
+import com.jagadish.main.Main;
+
 /**
  * @author jseth3
  * Implement Merge Sort
@@ -50,8 +52,17 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = {12,32,89,56,78,45,12,56};
+		//int[] arr = {12,32,89,56,78,45,12,56};
+		
+		int n = Main.readInteger("Enter the size of the array :");
+		int []arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = Main.readInteger("arr["+i+"] ?");
+		}
+		System.out.println("The complete array is :\n"+Arrays.toString(arr)+"\n");
+		
 		mergeSort(arr, 0, arr.length-1);
+		System.out.println("Array after merge sort :");
 		System.out.println(Arrays.toString(arr));
 	}
 

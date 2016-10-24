@@ -28,9 +28,11 @@ public class SortHashMap {
 		map.put(4, "Kamlesh");
 		map.put(5, "Vimlesh");
 		map.put(6, "Anshik");
+		System.out.println("Initialised map is");
 		System.out.println(map);
 		
 		Map<Integer,String> sortedMap = sortMapByValues(map);
+		System.out.println("Sorted map by values is");
 		System.out.println(sortedMap);
 	}
 

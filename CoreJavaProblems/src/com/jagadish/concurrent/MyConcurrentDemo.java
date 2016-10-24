@@ -1,5 +1,9 @@
 package com.jagadish.concurrent;
 
+import java.util.Iterator;
+
+import com.jagadish.main.Main;
+
 public class MyConcurrentDemo {
 
 	public static void main(String[] args) {
@@ -21,10 +25,12 @@ public class MyConcurrentDemo {
 	 */
 	public static void cowntDownLatchDemo() {
 		// CountDownLatch demo
-		MyCowntDownLatch latch = new MyCowntDownLatch(3);
-
+		int n = Main.readInteger("Enter the count down count :");
+		MyCowntDownLatch latch = new MyCowntDownLatch(n);
+		
 		new Thread(new MyRunnableWithLatchForWait(latch)).start();
-		new Thread(new MyRunnableWithLatchForWait(latch)).start();
+		Thread t2 =new Thread(new MyRunnableWithLatchForWait(latch));
+		t2.start();
 		// Pause
 		try {
 			Thread.sleep(3000);
@@ -32,8 +38,15 @@ public class MyConcurrentDemo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		new Thread(new MyRunnableWithLatchForSteps(latch, 2)).start();
-		new Thread(new MyRunnableWithLatchForSteps(latch, 1)).start();
+		new Thread(new MyRunnableWithLatchForSteps(latch, n/2)).start();
+		new Thread(new MyRunnableWithLatchForSteps(latch, n/2+1)).start();
+		
+		try {
+			t2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -41,20 +54,12 @@ public class MyConcurrentDemo {
 	 */
 	public static void cyclicBarrierDemo() {
 		// CyclicBarrier Demo
-		MyCyclicBarrier barrier = new MyCyclicBarrier(3);
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
-		// Pause
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		int n = Main.readInteger("Enter the barrier count :");
+		MyCyclicBarrier barrier = new MyCyclicBarrier(n);
+		
+		for (int i = 0; i < n; i++) {
+			new Thread(new MyRunnableWithBarrier(barrier)).start();
 		}
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
-		new Thread(new MyRunnableWithBarrier(barrier)).start();
 	}
 
 }
@@ -157,9 +162,9 @@ class MyRunnableWithLatchForSteps implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("Before latch.countDown : " + Thread.currentThread().getId());
+			System.out.println(i+"th Before latch.countDown Thread id : " + Thread.currentThread().getId());
 			latch.countDown();
-			System.out.println("After latch.countDown : " + Thread.currentThread().getId());
+			System.out.println(i+"th After latch.countDown Thread id : " + Thread.currentThread().getId());
 		}
 	}
 	

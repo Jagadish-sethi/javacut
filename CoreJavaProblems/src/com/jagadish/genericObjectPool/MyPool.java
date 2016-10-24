@@ -58,10 +58,14 @@ public class MyPool<T> {
 		// TODO Auto-generated method stub
 		MyPool<String> stringPools = new MyPool<String>(5);
 		
+		System.out.println("Pool of size 5 is initialised");
+		
+		System.out.println("3 new objects are added");
 		System.out.println(stringPools.addObject("Jagan"));
 		System.out.println(stringPools.addObject("Deban"));
 		System.out.println(stringPools.addObject("Kisan"));
 		
+		System.out.println("Trying to borrow 4 objects");
 		String obj1 = stringPools.borrowObject();
 		String obj2 = stringPools.borrowObject();
 		String obj3 = stringPools.borrowObject();
@@ -72,6 +76,7 @@ public class MyPool<T> {
 		System.out.println(obj3);
 		System.out.println(obj4);
 		
+		System.out.println("Trying to add 3 new objects");
 		System.out.println(stringPools.addObject("Anshik"));
 		System.out.println(stringPools.addObject("Kamlesh"));
 		System.out.println(stringPools.addObject("Suresh"));
@@ -80,13 +85,16 @@ public class MyPool<T> {
 		String obj6 = stringPools.borrowObject();
 		String obj7 = stringPools.borrowObject();
 		
+		System.out.println("Trying to borrow 3 objects");
 		System.out.println(obj5);
 		System.out.println(obj6);
 		System.out.println(obj7);
 		
+		System.out.println("Returning 2nd and 5th object");
 		stringPools.returnObject(obj2);
 		stringPools.returnObject(obj5);
 		
+		System.out.println("Trying to borrow 2 objects");
 		String obj8 = stringPools.borrowObject();
 		String obj9 = stringPools.borrowObject();
 		
