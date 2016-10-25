@@ -10,6 +10,8 @@ public class TestClass {
 		
 		AtomicInteger integer = new AtomicInteger();
 		ConcurrentHashMap<Integer, String> map = new ConcurrentHashMap<Integer, String>();
+		
+		System.out.println("\u002654");
 	}
 
 }
