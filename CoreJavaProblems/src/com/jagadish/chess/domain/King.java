@@ -1,5 +1,7 @@
 package com.jagadish.chess.domain;
 
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,5 @@ public class King extends Piece {
 	public void display() {
 		super.display();
 		System.out.print("KI|");
-		
 	}
 }

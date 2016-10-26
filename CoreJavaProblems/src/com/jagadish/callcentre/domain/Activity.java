@@ -4,14 +4,19 @@ import java.util.List;
 
 public class Activity {
 	
-	int activityId;
-	Call call;
-	Employee assignee;
+	Field field;
+	String fromValue;
+	String toValue;
 	
-	Activity(Call call, Employee employee) {
-		this.call = call;
-		this.assignee = employee;
+	Activity(Field field, String fromValue,String toValue) {
+		this.field = field;
+		this.fromValue = fromValue;
+		this.toValue = toValue;
 	}
 	
 
+}
+
+enum Field{
+	issue,resolution,status,assignee;
 }

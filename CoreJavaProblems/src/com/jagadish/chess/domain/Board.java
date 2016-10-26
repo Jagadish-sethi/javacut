@@ -21,15 +21,21 @@ public class Board implements Display{
 	
 	public void display() {
 		
-		System.out.println("-------------------CHESS BOARD------------------");
+		System.out.println("-------------------CHESS BOARD--------------------");
+		System.out.print("   ");
+		for (int i = 0; i < board.length; i++) {
+			System.out.print("  "+i+"   ");
+		}
+		System.out.println();
 		for (int i= 0;  i< board.length; i++) {
-			System.out.println("------------------------------------------------");
+			System.out.println("--------------------------------------------------");
+			System.out.print(i+" ");
 			for (int j = 0; j < board.length; j++) {
 				board[i][j].display();
 			}
 			System.out.println();
 		}
-		System.out.println("------------------------------------------------");
+		System.out.println("--------------------------------------------------");
 		
 		
 	}

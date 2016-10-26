@@ -5,7 +5,7 @@ public class Pawn extends Piece {
 	int delta;
 	public Pawn(boolean isAvailable,Position position, Team team) {
 		super(isAvailable, position, team);
-		this.delta = (this.currentPosition.getY()==0)?1:-1;
+		this.delta = (this.currentPosition.getY()==1)?1:-1;
 	}
 	
 	@Override

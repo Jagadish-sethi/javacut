@@ -41,12 +41,13 @@ public abstract class Piece implements Display{
 		return (Position) moveHistory.peek();
 	}
 
-	boolean applyMove(Position p) {
+	public boolean applyMove(Position p) {
 		if (isAvailable && isValidMove(p)) {
 			moveHistory.push(currentPosition);
 			
-			p.getPiece().setAvailable(false);
+			if(p.getPiece()!=null) p.getPiece().setAvailable(false);
 			p.setPiece(this);
+			currentPosition.setPiece(null);
 			currentPosition = p;
 			return true;
 		} else {
@@ -63,7 +64,7 @@ public abstract class Piece implements Display{
 		if (position.getX() < 0 || position.getX() > 7 || position.getY() < 0
 				|| position.getY() > 7)
 			return false;
-		if (position.getPiece().team == currentPosition.getPiece().team)
+		if (position.getPiece()!=null && position.getPiece().team == currentPosition.getPiece().team)
 			return false;
 		return true;
 	}

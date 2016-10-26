@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.jagadish.chess.domain.ChessGame;
 import com.jagadish.concurrent.MyConcurrentCounter;
 import com.jagadish.concurrent.MyConcurrentDemo;
+import com.jagadish.concurrent.MyConcurrentHashMap;
 import com.jagadish.findlargestnumbers.FindLargest;
 import com.jagadish.genericObjectPool.MyPool;
 import com.jagadish.mergesort.MergeSort;
@@ -22,7 +24,7 @@ public class Main {
 		
 		int option = 0;
 		
-		while(option!=11){
+		while(option!=15){
 			Main.readString("Press Enter key to Continue:");
 			System.out.println("\n======================Problem Statment====================================\n");
 			System.out.println("1. Design a concurrent Counter");
@@ -34,7 +36,9 @@ public class Main {
 			System.out.println("7. Sort hash map by values");
 			System.out.println("8. Implement Thread pool or executor service");
 			System.out.println("9. Implement Merge sort");
-			System.out.println("11. To Quit");
+			System.out.println("10. Chess game");
+			System.out.println("11. Implement Concurrent HashMap");
+			System.out.println("15. To Quit");
 			option = readInteger("Please enter the corresponding number to perform the mapped operation : ");
 			
 			switch (option) {
@@ -47,6 +51,8 @@ public class Main {
 			case 7: SortHashMap.main(null);			break;
 			case 8: MyThreadPoolExecutor.main(null);break;
 			case 9: MergeSort.main(null);			break;
+			case 10: ChessGame.main(null);			break;
+			case 11: MyConcurrentHashMap.main(null);break;
 			default:
 				break;
 			}
@@ -84,6 +90,18 @@ public class Main {
 		int value = 0;
 		try {
 			value=Integer.parseInt(br.readLine());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return value;
+	}
+	
+	public static long readLong(String question) {
+		System.out.print("\n"+question);
+		long value = 0;
+		try {
+			value=Long.parseLong(br.readLine());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
