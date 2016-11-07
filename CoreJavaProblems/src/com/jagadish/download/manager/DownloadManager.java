@@ -28,11 +28,17 @@ public class DownloadManager {
         Downloader d1 =new Downloader(frame);
         Downloader d2 =new Downloader(frame);
         Downloader d3 =new Downloader(frame);
+        Downloader d4 =new Downloader(frame);
+        Downloader d5 =new Downloader(frame);
+        Downloader d6 =new Downloader(frame);
         
         MyThreadPoolExecutor executor = new MyThreadPoolExecutor(5, new ArrayBlockingQueue<Runnable>(5));
         executor.execute(d1);
         executor.execute(d2);
         executor.execute(d3);
+        executor.execute(d4);
+        executor.execute(d5);
+        executor.execute(d6);
         
 	}
 

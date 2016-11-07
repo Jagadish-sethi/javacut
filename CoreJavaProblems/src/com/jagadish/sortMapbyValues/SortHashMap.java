@@ -36,7 +36,7 @@ public class SortHashMap {
 		System.out.println(sortedMap);
 	}
 
-	private static Map<Integer, String> sortMapByValues(Map<Integer, String> map) {
+	public static Map<Integer, String> sortMapByValues(Map<Integer, String> map) {
 		Map<Integer, String> sortedMap = new LinkedHashMap<Integer, String>();
 		
 		List<Entry<Integer,String>> list = new ArrayList(map.entrySet());

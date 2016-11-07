@@ -3,6 +3,7 @@ package com.jagadish.testapi;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -32,17 +33,12 @@ public class TestClass {
 //out.println(unicodeMessage);
 		
 		System.out.println(unicodeMessage);
-		ArrayList<E>;
+		
+		
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		
 	}
 
 }
 
 
-class AR<T>{
-	T[] arr;
-	
-	public AR() {
-		arr = new T[10];
-	}
-}

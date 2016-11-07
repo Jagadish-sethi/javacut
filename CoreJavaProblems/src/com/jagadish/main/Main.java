@@ -8,6 +8,8 @@ import com.jagadish.chess.domain.ChessGame;
 import com.jagadish.concurrent.MyConcurrentCounter;
 import com.jagadish.concurrent.MyConcurrentDemo;
 import com.jagadish.concurrent.MyConcurrentHashMap;
+import com.jagadish.download.manager.DownloadManager;
+import com.jagadish.externalsort.ExternalSort;
 import com.jagadish.findlargestnumbers.FindLargest;
 import com.jagadish.genericObjectPool.MyPool;
 import com.jagadish.mergesort.MergeSort;
@@ -38,6 +40,8 @@ public class Main {
 			System.out.println("9. Implement Merge sort");
 			System.out.println("10. Chess game");
 			System.out.println("11. Implement Concurrent HashMap");
+			System.out.println("12. Download Manager");
+			System.out.println("13. External Sort");
 			System.out.println("15. To Quit");
 			option = readInteger("Please enter the corresponding number to perform the mapped operation : ");
 			
@@ -53,6 +57,8 @@ public class Main {
 			case 9: MergeSort.main(null);			break;
 			case 10: ChessGame.main(null);			break;
 			case 11: MyConcurrentHashMap.main(null);break;
+			case 12: DownloadManager.main(null);break;
+			case 13: ExternalSort.main(null);break;
 			default:
 				break;
 			}
