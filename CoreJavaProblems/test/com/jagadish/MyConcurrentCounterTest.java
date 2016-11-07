@@ -1,7 +1,10 @@
-package com.jagadish.concurrent;
+package com.jagadish;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jagadish.concurrent.MyConcurrentCounter;
+
 import static org.junit.Assert.*;
 
 

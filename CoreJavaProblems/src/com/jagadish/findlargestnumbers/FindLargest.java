@@ -10,8 +10,9 @@ import com.jagadish.main.Main;
  */
 public class FindLargest {
 	
-	public static void findTwolargestNumber(int[] arr){
+	public static int[] findTwolargestNumber(int[] arr){
 		
+		int[] maxValue = new int[2];
 		int max = Integer.MIN_VALUE;
 		int secondMax = Integer.MIN_VALUE;
 		
@@ -27,6 +28,9 @@ public class FindLargest {
 		System.out.println("Largest element in the array is : "+ max);
 		System.out.println("Second Largest element in the array is : "+ secondMax);
 		
+		maxValue[0]=max;
+		maxValue[1]=secondMax;
+		return maxValue;
 	}
 	
 	public static void main(String[] args) {

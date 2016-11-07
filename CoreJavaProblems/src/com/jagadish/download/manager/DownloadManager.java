@@ -47,8 +47,10 @@ public class DownloadManager {
 class Downloader implements Runnable {
 	
 	final JProgressBar jProgressBar;
+	final JFrame frame;
     
 	public Downloader(JFrame frame) {
+		this.frame = frame;
 		jProgressBar = new JProgressBar();
         jProgressBar.setMaximum(100000);
         frame.add(jProgressBar);
@@ -93,6 +95,9 @@ class Downloader implements Runnable {
 			}
 			bout.close();
 			in.close();
+			
+			frame.remove(jProgressBar);
+			frame.repaint();
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
