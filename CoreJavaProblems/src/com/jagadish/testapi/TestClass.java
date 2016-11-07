@@ -35,7 +35,7 @@ public class TestClass {
 		System.out.println(unicodeMessage);
 		
 		
-		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		LinkedHashMap<String, String> map1 = new LinkedHashMap<>();
 		
 	}
 

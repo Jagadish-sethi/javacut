@@ -1,10 +1,10 @@
 package com.jagadish.concurrent;
 
-import static org.junit.Assert.*;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
+
 
 public class MyConcurrentCounterTest {
 	
@@ -18,9 +18,9 @@ public class MyConcurrentCounterTest {
 	@Test
 	public void test() {
 		counter.increment();
-		Assert.assertEquals(1, counter.getValue());
+		assertEquals(1, counter.getValue());
 		counter.decrement();
-		Assert.assertEquals(0, counter.getValue());	
+		assertEquals(0, counter.getValue());	
 	}
 
 }

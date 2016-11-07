@@ -5,8 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import junit.framework.Assert;
-
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,7 +33,7 @@ public class SortHashMapTest {
 		Map<Integer,String> sortedMap = SortHashMap.sortMapByValues(map);
 		Iterator<Entry<Integer,String>> it = sortedMap.entrySet().iterator();
 		Entry<Integer,String> entry =it.next();
-		Assert.assertEquals("Anshik", entry.getValue());
+		assertEquals("Anshik", entry.getValue());
 	}
 
 }

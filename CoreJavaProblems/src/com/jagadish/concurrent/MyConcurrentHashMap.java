@@ -99,12 +99,12 @@ public class MyConcurrentHashMap<K,V>{
             HashEntry<K,V> first = entryForHash(this, hash);
             HashEntry<K,V> e = first;
             HashEntry<K,V> node = null;
-            int retries = -1; // negative while locating node
+            int retries = -1; 
             while (!tryLock()) {
-                HashEntry<K,V> f; // to recheck first below
+                HashEntry<K,V> f; 
                 if (retries < 0) {
                     if (e == null) {
-                        if (node == null) // speculatively create node
+                        if (node == null) 
                             node = new HashEntry<K,V>(hash, key, value, null);
                         retries = 0;
                     }
@@ -119,7 +119,7 @@ public class MyConcurrentHashMap<K,V>{
                 }
                 else if ((retries & 1) == 0 &&
                          (f = entryForHash(this, hash)) != first) {
-                    e = first = f; // re-traverse if entry changed
+                    e = first = f; 
                     retries = -1;
                 }
             }
@@ -130,122 +130,6 @@ public class MyConcurrentHashMap<K,V>{
 			int i = hash&(segment.table.length-1);
 			return segment.table[i];
 		}
-
-		/**
-         * Scans for a node containing the given key while trying to
-         * acquire lock for a remove or replace operation. Upon
-         * return, guarantees that lock is held.  Note that we must
-         * lock even if the key is not found, to ensure sequential
-         * consistency of updates.
-         */
-        private void scanAndLock(Object key, int hash) {
-            // similar to but simpler than scanAndLockForPut
-            HashEntry<K,V> first = entryForHash(this, hash);
-            HashEntry<K,V> e = first;
-            int retries = -1;
-            while (!tryLock()) {
-                HashEntry<K,V> f;
-                if (retries < 0) {
-                    if (e == null || key.equals(e.key))
-                        retries = 0;
-                    else
-                        e = e.next;
-                }
-                else if (++retries > MAX_SCAN_RETRIES) {
-                    lock();
-                    break;
-                }
-                else if ((retries & 1) == 0 &&
-                         (f = entryForHash(this, hash)) != first) {
-                    e = first = f;
-                    retries = -1;
-                }
-            }
-        }
-
-        /**
-         * Remove; match on key only if value null, else match both.
-         */
-        final V remove(Object key, int hash, Object value) {
-            if (!tryLock())
-                scanAndLock(key, hash);
-            V oldValue = null;
-            try {
-                HashEntry<K,V>[] tab = table;
-                int index = (tab.length - 1) & hash;
-                HashEntry<K,V> e = tab[index];
-                HashEntry<K,V> pred = null;
-                while (e != null) {
-                    K k;
-                    HashEntry<K,V> next = e.next;
-                    if ((k = e.key) == key ||
-                        (e.hash == hash && key.equals(k))) {
-                        V v = e.value;
-                        if (value == null || value == v || value.equals(v)) {
-                            if (pred == null)
-                                tab[index]=next;
-                            else
-                                pred.next=next;
-                            ++modCount;
-                            --count;
-                            oldValue = v;
-                        }
-                        break;
-                    }
-                    pred = e;
-                    e = next;
-                }
-            } finally {
-                unlock();
-            }
-            return oldValue;
-        }
-
-        final boolean replace(K key, int hash, V oldValue, V newValue) {
-            if (!tryLock())
-                scanAndLock(key, hash);
-            boolean replaced = false;
-            try {
-                HashEntry<K,V> e;
-                for (e = entryForHash(this, hash); e != null; e = e.next) {
-                    K k;
-                    if ((k = e.key) == key ||
-                        (e.hash == hash && key.equals(k))) {
-                        if (oldValue.equals(e.value)) {
-                            e.value = newValue;
-                            ++modCount;
-                            replaced = true;
-                        }
-                        break;
-                    }
-                }
-            } finally {
-                unlock();
-            }
-            return replaced;
-        }
-
-        final V replace(K key, int hash, V value) {
-            if (!tryLock())
-                scanAndLock(key, hash);
-            V oldValue = null;
-            try {
-                HashEntry<K,V> e;
-                for (e = entryForHash(this, hash); e != null; e = e.next) {
-                    K k;
-                    if ((k = e.key) == key ||
-                        (e.hash == hash && key.equals(k))) {
-                        oldValue = e.value;
-                        e.value = value;
-                        ++modCount;
-                        break;
-                    }
-                }
-            } finally {
-                unlock();
-            }
-            return oldValue;
-        }
 
         final void clear() {
             lock();
@@ -323,19 +207,6 @@ public class MyConcurrentHashMap<K,V>{
         return (V) s.put(key, hash, value, false);
     }
 
-    @SuppressWarnings("unchecked")
-    public V putIfAbsent(K key, V value) {
-    	if (value == null)
-            throw new NullPointerException();
-        int hash = hash(key);
-        int i = (hash >>> 2) & segmentMask;
-        if(segments[i]==null){
-        	HashEntry<K, V>[] tables = new HashEntry[16];
-        	segments[i] = new Segment<K,V>(tables);
-        }
-        Segment s = segments[i];
-        return (V) s.put(key, hash, value, false);
-    }
 	
 
 }
