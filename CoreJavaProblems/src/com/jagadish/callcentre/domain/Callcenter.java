@@ -62,6 +62,10 @@ public class Callcenter {
 		call.setAssignee(emp.getEmployeeId());
 		assigneeMap.put(emp.getEmployeeId(),call);
 	}
+	
+	public void escalateCall(Call call){
+		assignCall(employees.get(employees.get(call.getAssignee()).getManagerId()), call);
+	}
 
 	public static void main(String[] args) {
 		
