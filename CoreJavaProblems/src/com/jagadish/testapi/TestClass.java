@@ -32,12 +32,28 @@ public class TestClass {
 //PrintStream out = new PrintStream (System.out, true , "UTF8" );
 //out.println(unicodeMessage);
 		
-		System.out.println(unicodeMessage);
+		String s1 = "A";
+		String s2 = "B";
+		System.out.println(s1 +" "+s2);
+		swap(s1, s2);
+		System.out.println(s1 +" "+s2);
 		
-		
-		LinkedHashMap<String, String> map1 = new LinkedHashMap<>();
+		String x = new String("ab");
+		//change(x);
+		System.out.println(x);
 		
 	}
+	
+	
+	private static void swap(String s1,String s2) {
+		// TODO Auto-generated method stub
+		String tmp = ""+s1;
+		s2=""+s1;
+		s1=""+tmp;
+
+	}
+	
+	
 
 }
 

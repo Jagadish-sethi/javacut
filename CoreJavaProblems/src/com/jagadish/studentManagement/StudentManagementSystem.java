@@ -49,16 +49,16 @@ public class StudentManagementSystem {
 		System.out.println("Student details added and roll no. genereated is "+rollNo);
 	}
 	
-	/*private void updateStudent() {
+	private void updateStudent() {
 		
 		long rollNo = Main.readLong("Enter roll no");
 		Student std = (Student)map.get(rollNo);
 		if(std ==null){
 			System.out.println("Wrong roll no. entered");
 		}
-		int ch = Main.readInteger("Enter 1 to change name, ")
+		int ch = Main.readInteger("Enter 1 to change name, ");
 		
-	}*/
+	}
 	
 	private void viewStudent() {
 		long rollNo = Main.readLong("Enter roll no");
