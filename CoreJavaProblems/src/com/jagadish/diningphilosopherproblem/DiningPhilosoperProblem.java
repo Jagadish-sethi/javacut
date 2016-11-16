@@ -70,6 +70,9 @@ class Display implements Runnable {
 				e.printStackTrace();
 			}
 			
+			Thread t = new Thread();
+			t.join();
+			
 		}
 		
 	}

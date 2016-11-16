@@ -9,7 +9,7 @@ import java.util.Set;
 public class CheckoutService {
 	
 	
-	Order checkOut(Cart cart, Customer customer){
+	/*Order checkOut(Cart cart, Customer customer){
 		
 		Order order = new Order(cart.itemsWithQuantity,customer);
 		//Confirm shipping addres
@@ -30,11 +30,11 @@ public class CheckoutService {
 		sum = applyOfferCode(code);
 		
 		
-	}
+	}*/
 
 }
 
-class Order {
+/*class Order {
 	Customer customer;
 	Order id;
 	Map<Item,Integer> itemsWithQuantity;
@@ -49,7 +49,7 @@ class Order {
 		this.status = newStatus;
 		notifyCustomer(customer,this.status);	
 	}
-}
+}*/
 
 enum OrderStatus{
 	CREATED, PAYMENT_SUCCESS, PAYMENT_FAILED,PACKING, SHIPPING, SHIPPED, DELIVERED, CLOSED, CANCELLED 
