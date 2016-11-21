@@ -70,7 +70,7 @@ class Downloader implements Runnable {
 			java.io.BufferedInputStream in = new java.io.BufferedInputStream(
 					httpConnection.getInputStream());
 			java.io.FileOutputStream fos = new java.io.FileOutputStream(
-					"Thread-id"+Thread.currentThread().getId()+".pdf");
+					"Thread-id"+((Math.random()*100)/100)+Thread.currentThread().getId()+".pdf");
 			java.io.BufferedOutputStream bout = new BufferedOutputStream(fos,
 					1024);
 			byte[] data = new byte[1024];
